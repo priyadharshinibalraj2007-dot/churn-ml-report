@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Customer Churn Prediction | ML Report</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:#182238;font:16px/1.6 system-ui,Arial,sans-serif}
+header{background:linear-gradient(120deg,#35227f,#7655e8);color:white;padding:46px 20px}header div,main{max-width:1000px;margin:auto}
+h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1}.muted{color:#626d80}main{padding:24px 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}.card{background:white;border:1px solid #e3e7f0;border-radius:15px;padding:20px;margin-bottom:16px}
+.kpi{font-size:1.8rem;font-weight:750;color:#6546d7}table{width:100%;border-collapse:collapse}td,th{padding:11px;border-bottom:1px solid #e3e7f0;text-align:left}a{color:#5638c2}
+</style></head><body>
+<header><div><strong>WORKORA · MACHINE LEARNING PROJECT</strong><h1>Customer Churn Prediction</h1>
+<p>Classification pipeline comparing Logistic Regression and Random Forest on an 800-customer dataset.</p></div></header>
+<main>
+<section class="grid">
+<div class="card"><div class="muted">Dataset size</div><div class="kpi">800</div>customer records</div>
+<div class="card"><div class="muted">Best model</div><div class="kpi" style="font-size:1.35rem">Logistic Regression</div>Higher holdout ROC-AUC</div>
+<div class="card"><div class="muted">ROC-AUC</div><div class="kpi">0.681</div>80/20 stratified test split</div>
+<div class="card"><div class="muted">Recall</div><div class="kpi">73.13%</div>Logistic Regression</div>
+</section>
+<section class="card"><h2>Objective</h2><p>Build and evaluate supervised classification models to estimate whether a customer will churn. The target column is <code>Churn</code> (Yes = 1, No = 0). CustomerID is excluded from model training because it is an identifier.</p></section>
+<section class="card"><h2>Methodology</h2><ol>
+<li>Numeric features: median imputation and MinMax scaling.</li>
+<li>Categorical features: most-frequent imputation and One-Hot Encoding.</li>
+<li>80/20 stratified train-test split with random_state=42.</li>
+<li>Train Logistic Regression and Random Forest classifiers.</li>
+<li>Evaluate Precision, Recall, F1-score, Accuracy and ROC-AUC.</li>
+<li>Export customer churn probabilities and Low/Medium/High risk bands.</li></ol></section>
+<section class="card"><h2>Model comparison</h2><div style="overflow-x:auto"><table>
+<tr><th>Model</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1-score</th><th>ROC-AUC</th></tr>
+<tr><td>Logistic Regression</td><td>66.88%</td><td>58.33%</td><td>73.13%</td><td>64.90%</td><td>0.681</td></tr>
+<tr><td>Random Forest</td><td>63.75%</td><td>56.16%</td><td>61.19%</td><td>58.57%</td><td>0.673</td></tr>
+</table></div><p class="muted">Logistic Regression performed best on this single holdout split. Performance is moderate and is not proof of production readiness.</p></section>
+<section class="card"><h2>Project files</h2><p>See the repository for the Python training script, source dataset, detailed report, evaluation plots and exported customer risk scores.</p></section>
+<section class="card"><h2>Limitations</h2><p>The dataset is synthetic. Evaluation uses one random split. Before real-world use, validate on newer unseen data, check calibration and subgroup performance, and select a threshold based on business costs.</p></section>
+</main></body></html>
